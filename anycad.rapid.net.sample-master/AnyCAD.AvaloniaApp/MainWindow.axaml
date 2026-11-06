@@ -1,0 +1,74 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:anycad="clr-namespace:AnyCAD.AvaloniaUI;assembly=AnyCAD.Avalonia.NET"
+		xmlns:local="clr-namespace:AnyCAD.AvaloniaApp"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AnyCAD.AvaloniaApp.MainWindow"
+        x:DataType="local:MainViewModel"
+        Title="AnyCAD.AvaloniaApp">
+	<Grid ColumnDefinitions="250, 3, *" Margin="7">
+		<TabControl>
+			<TabItem Header="基础功能">
+				<ScrollViewer Grid.Column="0" >
+					<TreeView ItemsSource="{Binding BasicItems}" SelectionChanged ="TreeView_SelectedItemChanged">
+						<TreeView.ItemTemplate>
+<TreeDataTemplate ItemsSource="{Binding Items}" x:DataType="TreeViewItem">
+						<TextBlock Text="{Binding Header}"/>
+					</TreeDataTemplate>
+						</TreeView.ItemTemplate>
+					</TreeView>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="运动仿真">
+				<ScrollViewer Grid.Column="0" >
+					<TreeView ItemsSource="{Binding SimulateItems}" SelectionChanged ="TreeView_SelectedItemChanged">
+						<TreeView.ItemTemplate>
+<TreeDataTemplate ItemsSource="{Binding Items}" x:DataType="TreeViewItem">
+						<TextBlock Text="{Binding Header}"/>
+					</TreeDataTemplate>
+						</TreeView.ItemTemplate>
+					</TreeView>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="加工制造">
+				<ScrollViewer Grid.Column="0" >
+					<TreeView ItemsSource="{Binding MfgItems}" SelectionChanged ="TreeView_SelectedItemChanged">
+						<TreeView.ItemTemplate>
+<TreeDataTemplate ItemsSource="{Binding Items}" x:DataType="TreeViewItem">
+						<TextBlock Text="{Binding Header}"/>
+					</TreeDataTemplate>
+						</TreeView.ItemTemplate>
+					</TreeView>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="点云处理">
+				<ScrollViewer Grid.Column="0" >
+					<TreeView ItemsSource="{Binding PtcItems}" SelectionChanged ="TreeView_SelectedItemChanged">
+						<TreeView.ItemTemplate>
+<TreeDataTemplate ItemsSource="{Binding Items}" x:DataType="TreeViewItem">
+						<TextBlock Text="{Binding Header}"/>
+					</TreeDataTemplate>
+						</TreeView.ItemTemplate>
+					</TreeView>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="高级建模">
+				<ScrollViewer Grid.Column="0" >
+					<TreeView ItemsSource="{Binding QuickSolidItems}" SelectionChanged ="TreeView_SelectedItemChanged">
+						<TreeView.ItemTemplate>
+<TreeDataTemplate ItemsSource="{Binding Items}" x:DataType="TreeViewItem">
+						<TextBlock Text="{Binding Header}"/>
+					</TreeDataTemplate>
+						</TreeView.ItemTemplate>
+					</TreeView>
+				</ScrollViewer>
+			</TabItem>
+		</TabControl>
+
+		<GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
+		<anycad:RenderControl Grid.Column="2" x:Name="mRenderView"  />
+	</Grid>
+
+</Window>

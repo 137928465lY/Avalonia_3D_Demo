@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:render="clr-namespace:OpenStepViewer.Render"
+        xmlns:mv="clr-namespace:OpenStepViewer"
+        x:Class="OpenStepViewer.MainWindow"
+        Title="OpenStepViewer - 纯 C# STEP 查看器（无 AnyCAD）"
+        Width="1280" Height="820">
+  <DockPanel Margin="4">
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="6" Margin="0,0,0,4">
+      <Button x:Name="BtnOpen" Content="打开 STEP..." Click="OnOpen" />
+      <Button x:Name="BtnWire" Content="线框" Click="OnWire" />
+      <Button x:Name="BtnFit" Content="适配视图" Click="OnFit" />
+      <TextBlock x:Name="StatusText" VerticalAlignment="Center" Margin="12,0,0,0" Text="就绪 — 打开 STEP 文件（左键旋转 / 滚轮缩放 / 右键平移）" />
+    </StackPanel>
+
+    <ScrollViewer DockPanel.Dock="Right" Width="300" Margin="4,0,0,0">
+      <StackPanel Spacing="4">
+        <TextBlock Text="关节（拖动滑块旋转）" FontWeight="Bold" />
+        <ItemsControl x:Name="JointPanel">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="mv:JointItem">
+              <StackPanel Margin="0,2,0,8">
+                <TextBlock Text="{Binding Title}" FontSize="12" />
+                <Slider Minimum="-180" Maximum="180" TickFrequency="1"
+                        Value="{Binding Angle, Mode=TwoWay}" ValueChanged="OnJointSlider" />
+              </StackPanel>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock Text="特征（点击高亮）" FontWeight="Bold" Margin="0,8,0,0" />
+        <ListBox x:Name="FeatureList" Height="260" SelectionChanged="OnFeatureSelected">
+          <ListBox.ItemTemplate>
+            <DataTemplate x:DataType="mv:FeatureItem">
+              <StackPanel Orientation="Horizontal" Spacing="6">
+                <TextBlock Text="{Binding Type}" FontWeight="Bold" />
+                <TextBlock Text="{Binding Info}" Foreground="Gray" />
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </StackPanel>
+    </ScrollViewer>
+
+    <Panel>
+      <render:GLRenderHost x:Name="GlHost" />
+      <Border Background="#01000000"
+              PointerPressed="OnPointerPressed" PointerMoved="OnPointerMoved" PointerReleased="OnPointerReleased"
+              PointerWheelChanged="OnWheel" />
+    </Panel>
+  </DockPanel>
+</Window>

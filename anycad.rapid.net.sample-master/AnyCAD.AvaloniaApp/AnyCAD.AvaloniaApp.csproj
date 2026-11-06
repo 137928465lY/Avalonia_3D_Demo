@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+	<TargetFrameworks>net8.0;</TargetFrameworks>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+	<BaseOutputPath>..\bin\</BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TrimmerRootAssembly Include="Avalonia.Themes.Fluent" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="AnyCAD.Rapid.Avalonia" Version="2026.10.24.1110" />
+	  <PackageReference Include="Avalonia.Desktop" Version="12.1.1" />
+	  <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnyCAD.Advanced\AnyCAD.Advanced.csproj" />
+    <ProjectReference Include="..\AnyCAD.Basic\AnyCAD.Basic.csproj" />
+    <ProjectReference Include="..\AnyCAD.MFG\AnyCAD.MFG.csproj" />
+    <ProjectReference Include="..\AnyCAD.PTC\AnyCAD.PTC.csproj" />
+    <ProjectReference Include="..\AnyCAD.QuickSolid\AnyCAD.QuickSolid.csproj" />
+  </ItemGroup>
+</Project>

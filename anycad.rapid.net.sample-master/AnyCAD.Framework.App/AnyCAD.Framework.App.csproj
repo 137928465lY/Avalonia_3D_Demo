@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+	<BaseOutputPath>..\bin\</BaseOutputPath>
+	<ApplicationIcon>app.ico</ApplicationIcon>
+    <RootNamespace>AnyCAD.WPF</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AnyCAD.SourceGenerator.Tools" Version="1.1.2" />
+	<PackageReference Include="AnyCAD.UIFramework.NET" Version="2025.10.7.1604" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnyCAD.Advanced\AnyCAD.Advanced.csproj" />
+    <ProjectReference Include="..\AnyCAD.Basic\AnyCAD.Basic.csproj" />
+    <ProjectReference Include="..\AnyCAD.MFG\AnyCAD.MFG.csproj" />
+    <ProjectReference Include="..\AnyCAD.PTC\AnyCAD.PTC.csproj" />
+    <ProjectReference Include="..\AnyCAD.QuickSolid\AnyCAD.QuickSolid.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AdjustFrame\AdjustFrameView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

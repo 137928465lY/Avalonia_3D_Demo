@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>AnyCADShowcaseRunner</AssemblyName>
+    <RootNamespace>AnyCADShowcaseRunner</RootNamespace>
+    <OutputPath>..\..\bin\Release\net8.0-windows\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <EnableDefaultItems>true</EnableDefaultItems>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AnyCAD.Foundation.NET">
+      <HintPath>..\..\bin\Release\net8.0-windows\AnyCAD.Foundation.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyCAD.WPF.NET">
+      <HintPath>..\..\bin\Release\net8.0-windows\AnyCAD.WPF.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyCAD.Basic">
+      <HintPath>..\..\bin\Release\net8.0-windows\AnyCAD.Basic.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyCAD.Advanced">
+      <HintPath>..\..\bin\Release\net8.0-windows\AnyCAD.Advanced.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyCAD.MFG">
+      <HintPath>..\..\bin\Release\net8.0-windows\AnyCAD.MFG.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyCAD.PTC">
+      <HintPath>..\..\bin\Release\net8.0-windows\AnyCAD.PTC.dll</HintPath>
+    </Reference>
+    <Reference Include="AnyCAD.QuickSolid">
+      <HintPath>..\..\bin\Release\net8.0-windows\AnyCAD.QuickSolid.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
+

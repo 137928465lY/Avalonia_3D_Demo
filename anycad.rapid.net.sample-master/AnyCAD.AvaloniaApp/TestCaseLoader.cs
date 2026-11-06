@@ -1,0 +1,66 @@
+using AnyCAD.Demo;
+using Avalonia.Controls;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System;
+
+namespace AnyCAD.AvaloniaApp
+{
+    internal class TestCaseLoader
+    {
+        ObservableCollection<TreeViewItem> rootNodes = new ();
+        Dictionary<string, ObservableCollection<TreeViewItem>> groupDict = new ();
+
+        void OnLoaded(Type type, string name, string groupName)
+        {
+            ObservableCollection<TreeViewItem> group = null;
+            if (!groupDict.TryGetValue(groupName, out group))
+            {
+                group = new ObservableCollection<TreeViewItem>();
+                groupDict[groupName] = group;
+
+                var node = new TreeViewItem();
+                node.ItemsSource = group;
+                node.Header = TestCaseLoaderBase.GetUIName(groupName);
+                node.IsExpanded = true;
+
+                rootNodes.Add(node);
+            }
+
+            var testNode = new TreeViewItem();
+            testNode.Header = name;
+            testNode.Tag = type;
+            group.Add(testNode);
+        }
+        static public ObservableCollection<TreeViewItem> LoadBasic()
+        {
+            var loader = new TestCaseLoader();
+            TestCaseLoaderBase.ForEachCase(loader.OnLoaded);
+            return loader.rootNodes;
+        }
+        static public ObservableCollection<TreeViewItem> LoadSimulate()
+        {
+            var loader = new TestCaseLoader();
+            TestCaseLoaderSimulate.ForEachCase(loader.OnLoaded);
+            return loader.rootNodes;
+        }
+        static public ObservableCollection<TreeViewItem> LoadQuickSolid()
+        {
+            var loader = new TestCaseLoader();
+            TestCaseLoaderQuickSolid.ForEachCase(loader.OnLoaded);
+            return loader.rootNodes;
+        }
+        static public ObservableCollection<TreeViewItem> LoadMfg()
+        {
+            var loader = new TestCaseLoader();
+            TestCaseLoaderMfg.ForEachCase(loader.OnLoaded);
+            return loader.rootNodes;
+        }
+        static public ObservableCollection<TreeViewItem> LoadPtc()
+        {
+            var loader = new TestCaseLoader();
+            TestCaseLoaderPtc.ForEachCase(loader.OnLoaded);
+            return loader.rootNodes;
+        }
+    }
+}

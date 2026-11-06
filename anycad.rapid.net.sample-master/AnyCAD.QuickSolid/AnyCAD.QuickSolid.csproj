@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFrameworks>net8.0;</TargetFrameworks>    
+    <BaseOutputPath>..\bin\</BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="AnyCAD.Foundation.NET" Version="2026.10.24.1110" />
+	  <PackageReference Include="AnyCAD.Simulate.NET" Version="2026.10.24.1110" />
+	  <PackageReference Include="AnyCAD.QuickSolid.NET" Version="2026.10.24.1110" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+</Project>

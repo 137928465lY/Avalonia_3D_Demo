@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+	<TargetFrameworks>net8.0-windows;</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<BaseOutputPath>..\bin\</BaseOutputPath>
+	<ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AnyCAD.Rapid.NET" Version="2026.10.24.1110" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnyCAD.Advanced\AnyCAD.Advanced.csproj" />
+    <ProjectReference Include="..\AnyCAD.AvaloniaApp\AnyCAD.AvaloniaApp.csproj" />
+    <ProjectReference Include="..\AnyCAD.Basic\AnyCAD.Basic.csproj" />
+    <ProjectReference Include="..\AnyCAD.MFG\AnyCAD.MFG.csproj" />
+    <ProjectReference Include="..\AnyCAD.PTC\AnyCAD.PTC.csproj" />
+    <ProjectReference Include="..\AnyCAD.QuickSolid\AnyCAD.QuickSolid.csproj" />
+    <ProjectReference Include="..\ThirdParty\FileDlgExtenders\FileDlgExtenders.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Coordinate\MultiCoordinateSystemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Interaction\Dlg\TransformDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

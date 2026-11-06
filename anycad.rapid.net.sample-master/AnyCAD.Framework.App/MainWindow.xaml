@@ -1,0 +1,91 @@
+﻿<Metro:MetroWindow x:Class="AnyCAD.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:anycad="clr-namespace:AnyCAD.WPF;assembly=AnyCAD.WPF.NET6"
+        xmlns:local="clr-namespace:AnyCAD.WPF"
+        xmlns:Metro="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        SaveWindowPosition="True"
+        d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
+        Title="AnyCAD Rapid .NET 应用框架: 功能展示" Height="600" Width="1024" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
+    <Metro:MetroWindow.RightWindowCommands>
+        <Metro:WindowCommands ShowSeparators="False">
+            <Menu Margin="50,2,0,0" Background="#00000000">
+                <MenuItem  Header="文件" Background="#00000000">
+                    <MenuItem  Header="新建" Command="{Binding NewSceneCommand}"/>
+                    <MenuItem  Header="导入实体..." Command="{Binding OpenModelCommand}"/>
+                    <MenuItem  Header="导入网格..." Command="{Binding OpenMeshCommand}"/>
+                    <MenuItem  Header="导入JSON..." Command="{Binding OpenDrawingCommand}"/>
+                </MenuItem>
+                <MenuItem  Header="编辑" Background="#00000000">
+                    <MenuItem Header="移动" Command="{Binding ExecuteSystemCommand}" CommandParameter="Move"></MenuItem>
+                    <MenuItem Header="旋转" Command="{Binding ExecuteSystemCommand}" CommandParameter="Rotate"></MenuItem>
+                    <MenuItem Header="移动+旋转" Command="{Binding ExecuteSystemCommand}" CommandParameter="Transform"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="位置调整" Command="{Binding CreateObjectCommand}" CommandParameter="My.AdjustLocation"></MenuItem>
+                    <MenuItem Header="姿态调整" Command="{Binding CreateObjectCommand}" CommandParameter="My.AdjustFrame"></MenuItem>                    
+                </MenuItem>
+                <MenuItem  Header="过滤器" Background="#00000000">
+                    <MenuItem  Header="选对象" Command="{Binding PickByObjectCommand}"/>
+                    <MenuItem  Header="选元素（点、边、面）" Command="{Binding PickByPrimitiveCommand}"/>
+                    <MenuItem  Header="选边" Command="{Binding PickEdgeCommand}"/>                    
+                    <MenuItem  Header="选择模式：点选/框选" Command="{Binding PickByRectCommand}"/>
+                    <Separator Height="3"></Separator>
+                    
+                </MenuItem>
+                <MenuItem Header="视图" Background="#00000000">
+                    <MenuItem Header="网格可见性" Command="{Binding ShowGridCommand}">
+                    </MenuItem>
+                    <MenuItem Header="投影：正交/透视" Command="{Binding CameraProjectionCommand}">
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="设置" Background="#00000000" Command="{Binding ViewSettingCommand}"/>
+                <MenuItem Header="帮助" Background="#00000000" Click="VisitHelpWebsite"/>
+            </Menu>
+        </Metro:WindowCommands>
+    </Metro:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="200"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="200"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition MinWidth="100" Width="200"/>
+            </Grid.ColumnDefinitions>
+            <anycad:RenderControl Grid.Column="0" x:Name="mRenderCtrl" Margin="0,0,0,0" ViewerReady="RenderCtrl_ViewerReady"/>
+
+            <GridSplitter Grid.Column="1" 
+                          ResizeBehavior="PreviousAndNext"  />
+            <TabControl Grid.Column="2"  Metro:HeaderedControlHelper.HeaderFontSize="16" Metro:TabControlHelper.UnderlineBrush="#FFF75656" Metro:TabControlHelper.Underlined="SelectedTabItem">
+                <TabItem Header="基础功能">
+                    <TreeView Grid.Row="1" ItemsSource="{Binding BasicSamples}" SelectedItemChanged="Browser_SelectedItemChanged" Grid.Column="0" Margin="0,0,0,0">
+                    </TreeView>
+                </TabItem>
+                <TabItem Header="运动仿真">
+                    <TreeView ItemsSource="{Binding AdvSamples}" SelectedItemChanged="Browser_SelectedItemChanged" Grid.Column="0" Margin="0,0,0,0">
+                    </TreeView>
+                </TabItem>
+                <TabItem Header="高级建模">
+                    <TreeView ItemsSource="{Binding QuickSolidSamples;}" SelectedItemChanged="Browser_SelectedItemChanged" Grid.Column="0" Margin="0,0,0,0">
+                    </TreeView>
+                </TabItem>
+            </TabControl>
+            <Popup PlacementTarget="{Binding ElementName=mRenderCtrl}" Placement="Relative" StaysOpen="True" IsOpen="True" AllowsTransparency="True">
+                <Label Content="{Binding SelectionInfo}"></Label>
+            </Popup>
+        </Grid>
+        <StatusBar Grid.Row="1">
+            <StatusBarItem Width="200" Content="{Binding MousePosition}"/>
+            <StatusBarItem HorizontalAlignment="Center">
+                <StackPanel Orientation ="Horizontal">
+
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Metro:MetroWindow>

@@ -1,0 +1,40 @@
+﻿using AnyCAD.Foundation;
+
+namespace AnyCAD.Demo.Geometry
+{
+    class Geometry_Slice : TestCase
+    {
+        public Geometry_Slice()
+        {
+            Title = "圆锥切片";
+            Description = "沿等高方向多层切片圆锥体。";
+            Tags.Add("几何");
+            Tags.Add("切片");
+            Level = 1;
+        }
+        public override void Run(IRenderView render)
+        {
+            var dir = new GDir(0, 0, 1);
+
+            var shape = ShapeBuilder.MakeCone(GP.XOY(), 100, 50, 200, 0);
+
+            for(int ii=0; ii<10; ++ii)
+            {
+                var pos = new GPnt(0,0, 10 + ii * 20);
+
+                var result = BooleanTool.Slice(shape, pos, dir, 0.01);
+                foreach(var face in result)
+                    render.ShowSceneNode(BrepSceneNode.Create(face, ColorTable.BlanchedAlmond, true));
+            }
+
+            var material = MeshStandardMaterial.Create("cut-transparent");
+            material.SetColor(ColorTable.Brown);
+            material.SetTransparent(true);
+            material.SetOpacity(0.6f);
+
+            var node = BrepSceneNode.Create(shape, material, null,0, true);
+            node.SetDisplayFilter(EnumShapeFilter.Face);
+            render.ShowSceneNode(node);
+        }
+    }
+}

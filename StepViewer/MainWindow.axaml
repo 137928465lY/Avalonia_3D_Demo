@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:anycad="clr-namespace:AnyCAD.AvaloniaUI;assembly=AnyCAD.Avalonia.NET"
+        x:Class="StepViewer.MainWindow"
+        Title="StepViewer - AnyCAD STEP 3D 查看器"
+        Width="1100" Height="720">
+  <DockPanel Margin="6">
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="6" Margin="0,0,0,6">
+      <Button x:Name="BtnOpen" Content="打开 STEP..." Click="OnOpenStep" />
+      <Button x:Name="BtnZoomAll" Content="缩放到全图" Click="OnZoomAll" />
+      <Button x:Name="BtnWire" Content="切换线框" Click="OnToggleWire" />
+      <TextBlock x:Name="StatusText" VerticalAlignment="Center" Margin="12,0,0,0"
+                 Text="就绪（启动时自动加载示例 STEP）" />
+    </StackPanel>
+
+    <!-- REA 逆向：该控件封装原生 GL 渲染器，暴露 Viewer/Scene/Camera，
+         ShowSceneNode/ShowShape/ZoomAll 等与 WPF/WinForms 版 RenderView 同源 -->
+    <anycad:RenderControl x:Name="RenderView" />
+  </DockPanel>
+</Window>

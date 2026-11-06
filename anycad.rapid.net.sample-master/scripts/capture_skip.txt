@@ -1,0 +1,12 @@
+﻿# 原生崩溃（native crash）
+Geometry/SweepCable
+Geometry/SweepGear
+Geometry/CutByWires
+# 托管异常（managed exception）
+Analysis/MiddlePath
+Simulation/Collision2
+Geometry/BiArcs
+Geometry/Wrap
+Geometry/BiArcsBasic
+Geometry/SplineToArcs
+Geometry/Unfold
